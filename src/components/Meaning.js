@@ -7,7 +7,7 @@ const Meaning = async( { language, word } ) => {
     console.log(word);
     console.log(language);
     // const meaning = word?.meaning || "No meaning available"; 
-    const result = await fetch(`http://localhost:5000/${language}/english-to-${language}-meaning-${word}`, {
+    const result = await fetch(`http://localhost:5000/english-to-${language}-meaning-${word}`, {
         method: 'GET',
         cache: 'no-store',
         headers: {
@@ -18,18 +18,20 @@ const Meaning = async( { language, word } ) => {
         throw new Error(`Failed to fetch data: ${result.status}`);
     }
     const meaningData = await result.json();
-    console.log(meaningData);
+    // console.log(meaningData);
   return ( 
     <div className="hero-container">
             {/* Left Part */}
             <div className='left-part'>
                 <div className='left-part-up-down'>
                     <fieldset className='left-fieldset'>
-                        <legend className="hero-title">
+                        <legend className="hero-title"> 
                             Bdword.Com | English to Bangla Dictionary
                         </legend>
-                        <h1>{meaningData.meaning}</h1> 
-                        <h2>{meaningData.sentExample}</h2>
+                        <h1>{meaningData.mean}</h1> 
+                        <h1>{meaningData.word}</h1>
+                        <h1>{meaningData.nex}</h1>
+                        <h1>{meaningData.prev}</h1>
                     </fieldset>
                 </div>
                 <div>
