@@ -9,7 +9,7 @@ export default async function Language({ params }) {
       <div>
           <Header_bangla></Header_bangla>
           <Hero_bangla></Hero_bangla>
-      </div>
+      </div>   
   );
 }
 
