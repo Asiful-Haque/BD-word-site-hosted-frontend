@@ -58,7 +58,13 @@
     color: #000000;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 15px;
+}
+
+.headforit {
+    padding-bottom: 15px;
+}
+.act-meaning {
+    padding-top: 15px;
 }
 
 .hero-text {
@@ -183,8 +189,63 @@
     font-weight: bold; /* Bold font for emphasis */
     /* margin-bottom: 10px; Space below the legend */
 }
+.image-container {
+    padding: 10px;
+}
+.dic-img {
+    border: solid 1px black;
+    border-style: dotted;
+    padding: 10px;
+    width: fit-content; 
+}
 
 
 
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detail-item {
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+}
+
+.detail-item h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 
+.two-button {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+.btn1 {
+    background-color: rgb(19,51,48);
+    color: white;
+    font-size: larger;
+    padding: 5px;
+    border: none;
+}
+.btn2 {
+    background-color: rgb(19,51,48);
+    color: white;
+    font-size: larger;
+    padding: 5px;
+    border: none;
+}
+.btn1:hover, .btn2:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.styled-line {
+    border: 0;           
+    height: 2px;         
+    background-color: rgb(241,234,236); 
+    width: 100%;         
+}
