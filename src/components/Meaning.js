@@ -36,6 +36,11 @@ const Meaning = async ({ language, word }) => {
   }
 
   const details = meaningData.result.details;
+  const partsOfSpeechValues = meaningData.result_secondary.data.eng;
+  const examples = meaningData.result_secondary.data.examples;
+  const phrases = meaningData.result_secondary.data.phrase;
+  const synonyms = meaningData.result_secondary.data.syn;
+  const antonyms = meaningData.result_secondary.data.anto;
   return (
     <div className="hero-container">
       {/* Left Part */}
@@ -117,6 +122,129 @@ const Meaning = async ({ language, word }) => {
         )}
         <hr className="styled-line" />
         {/* -----------------------------------Two button close----------------------------- */}
+        {/* -----------------------------------1----------------------------- */}
+        {partsOfSpeechValues && (
+          <div className="defination">
+            <div className="headline">
+              <h2 className="headline-h1">Definitions of {word} in English</h2>
+            </div>
+            <div className="response">
+              {Object.entries(partsOfSpeechValues).map(([key, value]) => (
+                <div key={key}>
+                  <h4 className="Heading">{key}</h4>
+                  {/* Check if value is an array */}
+                  {Array.isArray(value) ? (
+                    value.map((item, index) => (
+                      <p className="p-text" key={index}>
+                        ({index + 1}){" "}
+                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                      </p>
+                    ))
+                  ) : /* Check if value is an object */
+                  typeof value === "object" && value !== null ? (
+                    Object.entries(value).map(
+                      ([nestedKey, nestedValue], index) => (
+                        <div key={nestedKey}>
+                          <p className="p-text">
+                            ({index + 1}){" "}
+                            {nestedValue.charAt(0).toUpperCase() +
+                              nestedValue.slice(1)}
+                            .
+                          </p>
+                        </div>
+                      )
+                    )
+                  ) : /* Check if value is a string */
+                  typeof value === "string" ? (
+                    <p className="p-text">{value}</p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {/* -----------------------------------1----------------------------- */}
+        {/* -----------------------------------2----------------------------- */}
+        {examples && (
+          <div className="examples">
+            <div className="headline">
+              <h2 className="headline-h1">Examples of {word} in English</h2>
+            </div>
+            <div className="example-response">
+              {examples.map((item, index) => (
+                <>
+                  <p className="p-text" key={index}>
+                    ({index + 1}){" "}
+                    {[item.charAt(0).toUpperCase() + item.slice(1)]
+                      .join("")
+                      .split(" ")
+                      .map((text, i) =>
+                        text.toLowerCase() === word.toLowerCase() ? (
+                          <strong key={i}>{text} </strong>
+                        ) : (
+                          <span key={i}>{text} </span>
+                        )
+                      )}
+                  </p>
+                </>
+              ))}
+            </div>
+          </div>
+        )}
+        {/* -----------------------------------2----------------------------- */}
+        {/* -----------------------------------3----------------------------- */}
+        {phrases && (
+          <div className="related-phrase-container">
+            <div className="headline">
+              <h2 className="headline-h1">Related phrases of {word}</h2>
+            </div>
+            <div className="phrases">
+              {phrases.slice(1).map((item, index) => (
+                <div key={index} className="each-phrase">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {/* -----------------------------------3----------------------------- */}
+        {/* -----------------------------------4----------------------------- */}
+        <div className="syno-anto-container">
+            <div className="headline">
+              <h2 className="headline-h1">synonyms of {word}</h2>
+            </div>
+            <div className="syno">
+              {
+                Object.entries(synonyms).map(([key,value]) => (
+                    Array.isArray(value) ? (
+                      value.map((item, index) => (
+                        <div key={index} className="each-syno">
+                          <p>{item}</p>
+                        </div>
+                      ))
+                    ): null
+                ))
+              }
+            </div>
+          </div>
+
+          <div className="syno-anto-container">
+            <div className="headline">
+              <h2 className="headline-h1">Antonyms of {word}</h2>
+            </div>
+            <div className="syno">
+              {
+                    Array.isArray(antonyms) ? (
+                      antonyms.map((item, index) => (
+                        <div key={index} className="each-syno">
+                          <p>{item}</p>
+                        </div>
+                      ))
+                    ): null
+              }
+            </div>
+          </div>
+        {/* -----------------------------------4----------------------------- */}
         <div>
           <a
             href="https://www.bdword.com/english-to-bengali-dictionary-learn-prepositions"
