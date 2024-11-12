@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../styles/Meaning.css";
+import { notFound } from 'next/navigation';
 
 const Meaning = async ({ language, word }) => {
   // fetching data from api
@@ -18,7 +19,7 @@ const Meaning = async ({ language, word }) => {
     }
   );
   if (!result.ok) {
-    throw new Error(`Failed to fetch data: ${result.status}`);
+    notFound();
   }
   const meaningData = await result.json();
 
