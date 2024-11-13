@@ -349,3 +349,7 @@
 .each-syno:hover {
     transform: scale(1.1); 
 }
+
+.words-searched {
+    padding: 10px;
+}

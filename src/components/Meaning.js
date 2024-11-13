@@ -4,7 +4,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../styles/Meaning.css";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
+import SearchList from "./Search_list";
 
 const Meaning = async ({ language, word }) => {
   // fetching data from api
@@ -42,6 +43,7 @@ const Meaning = async ({ language, word }) => {
   const phrases = meaningData.result_secondary.data.phrase;
   const synonyms = meaningData.result_secondary.data.syn;
   const antonyms = meaningData.result_secondary.data.anto;
+
   return (
     <div className="hero-container">
       {/* Left Part */}
@@ -173,8 +175,8 @@ const Meaning = async ({ language, word }) => {
             </div>
             <div className="example-response">
               {examples.map((item, index) => (
-                <>
-                  <p className="p-text" key={index}>
+                <div key={index}>
+                  <p className="p-text">
                     ({index + 1}){" "}
                     {[item.charAt(0).toUpperCase() + item.slice(1)]
                       .join("")
@@ -187,7 +189,7 @@ const Meaning = async ({ language, word }) => {
                         )
                       )}
                   </p>
-                </>
+                </div>
               ))}
             </div>
           </div>
@@ -210,41 +212,54 @@ const Meaning = async ({ language, word }) => {
         )}
         {/* -----------------------------------3----------------------------- */}
         {/* -----------------------------------4----------------------------- */}
-        <div className="syno-anto-container">
+        {synonyms && (
+          <div className="syno-anto-container">
             <div className="headline">
               <h2 className="headline-h1">synonyms of {word}</h2>
             </div>
             <div className="syno">
-              {
-                Object.entries(synonyms).map(([key,value]) => (
-                    Array.isArray(value) ? (
-                      value.map((item, index) => (
-                        <div key={index} className="each-syno">
-                          <p>{item}</p>
-                        </div>
-                      ))
-                    ): null
-                ))
-              }
+              {Object.entries(synonyms).map(([key, value]) =>
+                Array.isArray(value)
+                  ? value.map((item, index) => (
+                      <div key={index} className="each-syno">
+                        <p>{item}</p>
+                      </div>
+                    ))
+                  : Array.isArray(synonyms)
+                  ? synonyms.map((item, index) => (
+                      <div key={index} className="each-syno">
+                        <p>{item}</p>
+                      </div>
+                    ))
+                  : null
+              )}
             </div>
           </div>
+        )}
 
+        {antonyms && (
           <div className="syno-anto-container">
             <div className="headline">
               <h2 className="headline-h1">Antonyms of {word}</h2>
             </div>
             <div className="syno">
-              {
-                    Array.isArray(antonyms) ? (
-                      antonyms.map((item, index) => (
-                        <div key={index} className="each-syno">
-                          <p>{item}</p>
-                        </div>
-                      ))
-                    ): null
-              }
+              {Array.isArray(antonyms)
+                ? antonyms.map((item, index) => (
+                    <div key={index} className="each-syno">
+                      <p>{item}</p>
+                    </div>
+                  ))
+                : typeof antonyms === "object" && antonyms !== null
+                ? Object.entries(antonyms).map(([key, value], index) => (
+                    <div key={index} className="each-syno">
+                      <p>{value}</p>
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
+        )}
+
         {/* -----------------------------------4----------------------------- */}
         <div>
           <a
@@ -260,7 +275,6 @@ const Meaning = async ({ language, word }) => {
             />
           </a>
         </div>
-
         <div>
           <a
             href="https://www.bdword.com/english-to-bengali-dictionary-commonly-confused-words"
@@ -613,6 +627,25 @@ const Meaning = async ({ language, word }) => {
                 <div className="clear_fixdiv">
                   Currently, you do not have any favorite words. Please click on
                   the heart icon to add words to your favorite list.
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <div className="box_wrapper2">
+          <div className="inner_wrapper">
+            <fieldset className="fieldset_custom">
+              <legend className="custom_font2">Your Word History</legend>
+
+              <div className="fieldset_body inner_details" id="load_favourite">
+                <div className="words-searched">
+                  You can found here all the words that you have searched on our wibsite.
+                  {
+                    <div className="words-searched">
+                      <SearchList></SearchList>
+                    </div>
+                  }
                 </div>
               </div>
             </fieldset>

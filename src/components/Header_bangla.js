@@ -26,6 +26,13 @@ const Header_bangla = () => {
         if (searchWord.trim()) {
             const formattedQuery = searchWord.trim().replace(/\s+/g, '-');
             const targetUrl = `/english-to-bengali-meaning-${formattedQuery}`; // Construct the URL
+            const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+            searchHistory.unshift(formattedQuery);
+
+            if (searchHistory.length > 5) {
+                searchHistory.pop(); // Remove the oldest word if there are more than 5
+            }
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
             setSearchWord(''); // Clear the input
             router.replace(targetUrl); // Navigate to the target URL
