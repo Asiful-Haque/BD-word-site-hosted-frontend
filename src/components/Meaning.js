@@ -21,7 +21,7 @@ const Meaning = async ({ language, word }) => {
   );
   if (!result.ok) {
     // notFound();
-    return redirect(`http://localhost:3000/wrong?word=${word}`)
+    return redirect(`http://localhost:3000/wrong?word=${word}`);
   }
   const meaningData = await result.json();
 
@@ -141,7 +141,9 @@ const Meaning = async ({ language, word }) => {
                     value.map((item, index) => (
                       <p className="p-text" key={index}>
                         ({index + 1}){" "}
-                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                        {typeof item === "string" && item.length > 0
+                          ? item.charAt(0).toUpperCase() + item.slice(1)
+                          : "No data available"}
                       </p>
                     ))
                   ) : /* Check if value is an object */
@@ -161,7 +163,7 @@ const Meaning = async ({ language, word }) => {
                   ) : /* Check if value is a string */
                   typeof value === "string" ? (
                     <p className="p-text">{value}</p>
-                  ) : null}
+                  ) : "No data available"}
                 </div>
               ))}
             </div>
@@ -203,7 +205,7 @@ const Meaning = async ({ language, word }) => {
               <h2 className="headline-h1">Related phrases of {word}</h2>
             </div>
             <div className="phrases">
-              {phrases.slice(1).map((item, index) => (
+              {phrases.map((item, index) => (
                 <div key={index} className="each-phrase">
                   {item}
                 </div>
@@ -232,7 +234,7 @@ const Meaning = async ({ language, word }) => {
                         <p>{item}</p>
                       </div>
                     ))
-                  : null
+                  : "No data available"
               )}
             </div>
           </div>
@@ -256,7 +258,7 @@ const Meaning = async ({ language, word }) => {
                       <p>{value}</p>
                     </div>
                   ))
-                : null}
+                : "No data available"}
             </div>
           </div>
         )}
@@ -641,7 +643,8 @@ const Meaning = async ({ language, word }) => {
 
               <div className="fieldset_body inner_details" id="load_favourite">
                 <div className="words-searched">
-                  You can found here all the words that you have searched on our wibsite.
+                  You can found here all the words that you have searched on our
+                  wibsite.
                   {
                     <div className="words-searched">
                       <SearchList></SearchList>
