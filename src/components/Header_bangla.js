@@ -22,10 +22,14 @@ const Header_bangla = () => {
     // Handle search form submission
     const handleSearch = (e) => {
         e.preventDefault(); // Prevent default form submission
-        console.log("handle search function");
+        // console.log("handle search function");
         if (searchWord.trim()) {
+            console.log(searchWord);
             const formattedQuery = searchWord.trim().replace(/\s+/g, '-');
+            // console.log("formattedQuery");
+            // console.log(formattedQuery);
             const targetUrl = `/english-to-bengali-meaning-${formattedQuery}`; // Construct the URL
+            // console.log(targetUrl);
             const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
             searchHistory.unshift(formattedQuery);
 

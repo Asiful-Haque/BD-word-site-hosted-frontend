@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../styles/Meaning.css";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import SearchList from "./Search_list";
 
 const Meaning = async ({ language, word }) => {
@@ -20,7 +20,8 @@ const Meaning = async ({ language, word }) => {
     }
   );
   if (!result.ok) {
-    notFound();
+    // notFound();
+    return redirect(`http://localhost:3000/wrong?word=${word}`)
   }
   const meaningData = await result.json();
 
