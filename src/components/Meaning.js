@@ -74,6 +74,7 @@ const Meaning = async ({ language, word }) => {
                   height={height}
                   width={width}
                   title={word}
+                  layout="responsive"
                   loading="lazy"
                 />
               </div>
@@ -289,6 +290,7 @@ const Meaning = async ({ language, word }) => {
                       width={600}
                       height={400}
                       fallback={fallbackUrl}
+                      layout="responsive"
                       className="image"
                     />
                   </div>
@@ -666,10 +668,11 @@ const Meaning = async ({ language, word }) => {
             <fieldset className="fieldset_custom">
               <legend className="custom_font2">Your Favorite Words</legend>
 
-              <div className="fieldset_body inner_details" id="load_favourite">
+              <div className="fieldset_body">
                 <div className="clear_fixdiv">
                   Currently, you do not have any favorite words. Please click on
                   the heart icon to add words to your favorite list.
+                  
                 </div>
               </div>
             </fieldset>
@@ -680,18 +683,12 @@ const Meaning = async ({ language, word }) => {
           <div className="inner_wrapper">
             <fieldset className="fieldset_custom">
               <legend className="custom_font2">Your Word History</legend>
-
-              <div className="fieldset_body inner_details" id="load_favourite">
                 <div className="words-searched">
-                  You can found here all the words that you have searched on our
+                  <p>You can found here all the words that you have searched on our
                   wibsite.
-                  {
-                    <div className="words-searched">
-                      <SearchList></SearchList>
-                    </div>
-                  }
+                  </p>
+                  <SearchList></SearchList>
                 </div>
-              </div>
             </fieldset>
           </div>
         </div>

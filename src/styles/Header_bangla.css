@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -135,7 +135,23 @@
 
     .search_fld {
         flex: none;
-        width: 100%;
+        width: 140%;
         padding: 10px 0;
+    }
+    .content_wrapper {
+        max-width: 28%;
+    }
+    .logo {
+        width: 90px;
+    }
+    .header_wrapper {
+        padding: 0px 0px;
+        padding-right: 20px;
+    }
+    .headforit {
+        font-size: 20px;
+    }
+    .hero-title {
+        font-size: 8px;
     }
 }

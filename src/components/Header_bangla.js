@@ -55,6 +55,7 @@ const Header_bangla = () => {
                 <div className="logo_div">
                     <a href="https://www.bdword.com/">
                         <Image
+                            className='logo'
                             src="https://content2.mcqstudy.com/bw-static-files/site_logo/bengali.webp"
                             alt="BDWORD"
                             height={55}

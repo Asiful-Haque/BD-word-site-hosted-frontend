@@ -1,4 +1,5 @@
 "use client"
+import "../styles/Meaning.css";
 import React, { useEffect, useState } from "react";
 
 const SearchList = () => {
@@ -13,19 +14,35 @@ const SearchList = () => {
   }, []);
 
   return (
-    <div className="words-searched">
-      {searchHistory.length === 0 ? (
-        <p>
-          Currently, you do not have any favorite words. Please click on the heart icon to add words to your favorite list.
-        </p>
-      ) : (
-        <ul>
-          {searchHistory.map((word, index) => (
-            <li key={index}>{word}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    // <div className="search-list-container">
+    //   {searchHistory.length === 0 ? (
+    //     <p>
+    //       Currently, you do not have any favorite words. Please click on the heart icon to add words to your favorite list.
+    //     </p>
+    //   ) : (
+    //     <ul>
+    //       {searchHistory.map((word, index) => (
+    //         <li key={index}>{word}</li>
+    //       ))}
+    //     </ul>
+        
+    //   )}
+    // </div>
+     <div className="search-list-container">
+     {searchHistory.length === 0 ? (
+       <p>
+         Currently, you do not have any favorite words. Please click on the heart icon to add words to your favorite list.
+       </p>
+     ) : (
+       <div className="search-history-container">
+         {searchHistory.map((word, index) => (
+           <div key={index} className="search-history-item">
+             {word}
+           </div>
+         ))}
+       </div>
+     )}
+   </div>
   );
 };
 
