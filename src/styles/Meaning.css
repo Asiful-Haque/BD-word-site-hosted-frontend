@@ -383,3 +383,68 @@
 .words-searched {
     padding: 10px;
 }
+
+
+
+
+
+
+/* ss part */
+.main-cont-for-ss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.title-for-series-ss {
+    margin-top: 30px;
+    align-items: center;
+}
+  
+  .card {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    /* border-radius: 8px; */
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(173, 168, 168, 0.1), 
+    0 1px 3px rgba(173, 168, 168, 0.06); 
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0 6px 12px rgb(167, 165, 165), 
+                0 3px 6px rgb(199, 196, 196); 
+    transform: translateY(-5px); 
+  }
+  
+  .imageWrapper {
+    width: 100%;
+    height: auto;
+  }
+  
+  .image {
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .word {
+    font-weight: bold;
+    margin: 8px 0;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    margin: 4px 0;
+    color: #777;
+  }
+  

@@ -44,7 +44,8 @@ const Meaning = async ({ language, word }) => {
   const phrases = meaningData.result_secondary.data.phrase;
   const synonyms = meaningData.result_secondary.data.syn;
   const antonyms = meaningData.result_secondary.data.anto;
-
+  // const ss_res = meaningData.ss_result;
+  const data = meaningData.ss_result;
   return (
     <div className="hero-container">
       {/* Left Part */}
@@ -264,6 +265,45 @@ const Meaning = async ({ language, word }) => {
         )}
 
         {/* -----------------------------------4----------------------------- */}
+        {/* -----------------------------------SS part----------------------------- */}
+        <div className="main-cont-for-ss">
+          <h1 className="title-for-series-ss">TV series example of the word</h1>
+          <div className="each-ss">
+            {
+            data.map(({ word, subtitleInfo }, index) => {
+              const { end_time, text, mname, mtitle } = subtitleInfo;
+        
+              // Construct the image URL
+              const baseUrl = `https://content2.mcqstudy.com/ss`;
+              const formattedTime = end_time.replace(/,/g, "."); // Replace the comma with a dot
+              const imageUrl = `${baseUrl}/${mname}-${formattedTime}.jpeg.webp`;
+              const fallbackUrl = `${baseUrl}/${mname}-${formattedTime}.jpeg`;
+
+        
+              return (
+                <div key={index} className="card">
+                  <div className="imageWrapper">
+                    <Image
+                      src={imageUrl}
+                      alt={text.trim()}
+                      width={600}
+                      height={400}
+                      fallback={fallbackUrl}
+                      className="image"
+                    />
+                  </div>
+                  {/* <p className="word">{word}</p> */}
+                  <p className="title">{mtitle}</p>
+                  <p className="subtitle">{text.trim()}</p>
+                </div>
+              );
+            })
+            }
+          </div>
+        </div>
+        
+        {/* -----------------------------------SS part close----------------------------- */}
+
         <div>
           <a
             href="https://www.bdword.com/english-to-bengali-dictionary-learn-prepositions"

@@ -9,8 +9,6 @@ export default async function error(props) {
     `http://localhost:5000/suggestions?word=${word}`
   );
   const data = await response.json();
-  console.log(data);
-//   console.log(word);
 
   return (
     <div>
