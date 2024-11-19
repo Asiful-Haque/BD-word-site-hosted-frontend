@@ -470,7 +470,8 @@
   .card {
     width: 100%;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
+    background-color: rgb(169, 236, 214);
     /* border-radius: 8px; */
     padding: 10px;
     margin-top: 20px;
@@ -521,6 +522,20 @@
         flex-direction: column;
         width: 100%;
         padding: 10px;
+    }
+    .hero-container-error-page {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+    h1 {
+        display: block;
+        font-size: 18px;
+    }
+    h2 {
+        display: block;
+        font-size: 20px;
     }
     .hero-title {
         color: #000000;

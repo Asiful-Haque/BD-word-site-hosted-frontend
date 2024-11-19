@@ -6,6 +6,8 @@ import Image from "next/image";
 import "../styles/Meaning.css";
 import { notFound, redirect } from "next/navigation";
 import SearchList from "./Search_list";
+import SpeakButton from "./SpeakButton";
+
 
 const Meaning = async ({ language, word }) => {
   // fetching data from api
@@ -37,6 +39,7 @@ const Meaning = async ({ language, word }) => {
   if (fs.existsSync(imgSrcPathWebp)) {
     finalSrc = imgSrcWebp;
   }
+  
 
   const details = meaningData.result.details;
   const partsOfSpeechValues = meaningData.result_secondary.data.eng;
@@ -56,8 +59,14 @@ const Meaning = async ({ language, word }) => {
               Bdword.Com | English to Bangla Dictionary
             </legend>
             <h1 className="headforit">
-              English to Bangla Meaning of {word} - {meaningData.result.mean}
+              English to Bangla Meaning of{" "}
+              <span style={{ color: "blue", fontWeight: "bolder" }}>
+                {" "}
+                {word}{" "}
+              </span>
+              - {meaningData.result.mean}
             </h1>
+            <SpeakButton word={word}></SpeakButton>
             <hr className="styled-line" />
             <h1 className="act-meaning">{meaningData.result.mean}</h1>
           </fieldset>
@@ -93,7 +102,15 @@ const Meaning = async ({ language, word }) => {
                 key !== "result" &&
                 value && ( // Check if value exists and is not null
                   <div key={key} className="detail-item">
-                    <h4>{key}</h4>
+                    <h2
+                      style={{
+                        color: "black",
+                        fontWeight: "bolder",
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </h2>
                     {Array.isArray(value) ? (
                       <p>{value.join(", ")}</p> // Join array elements with commas
                     ) : (
@@ -165,7 +182,9 @@ const Meaning = async ({ language, word }) => {
                   ) : /* Check if value is a string */
                   typeof value === "string" ? (
                     <p className="p-text">{value}</p>
-                  ) : "No data available"}
+                  ) : (
+                    "No data available"
+                  )}
                 </div>
               ))}
             </div>
@@ -270,17 +289,15 @@ const Meaning = async ({ language, word }) => {
         <div className="main-cont-for-ss">
           <h1 className="title-for-series-ss">TV series example of the word</h1>
           <div className="each-ss">
-            {
-            data.map(({ word, subtitleInfo }, index) => {
+            {data.map(({ word, subtitleInfo }, index) => {
               const { end_time, text, mname, mtitle } = subtitleInfo;
-        
+
               // Construct the image URL
               const baseUrl = `https://content2.mcqstudy.com/ss`;
               const formattedTime = end_time.replace(/,/g, "."); // Replace the comma with a dot
               const imageUrl = `${baseUrl}/${mname}-${formattedTime}.jpeg.webp`;
               const fallbackUrl = `${baseUrl}/${mname}-${formattedTime}.jpeg`;
 
-        
               return (
                 <div key={index} className="card">
                   <div className="imageWrapper">
@@ -299,11 +316,10 @@ const Meaning = async ({ language, word }) => {
                   <p className="subtitle">{text.trim()}</p>
                 </div>
               );
-            })
-            }
+            })}
           </div>
         </div>
-        
+
         {/* -----------------------------------SS part close----------------------------- */}
 
         <div>
@@ -672,7 +688,6 @@ const Meaning = async ({ language, word }) => {
                 <div className="clear_fixdiv">
                   Currently, you do not have any favorite words. Please click on
                   the heart icon to add words to your favorite list.
-                  
                 </div>
               </div>
             </fieldset>
@@ -683,12 +698,13 @@ const Meaning = async ({ language, word }) => {
           <div className="inner_wrapper">
             <fieldset className="fieldset_custom">
               <legend className="custom_font2">Your Word History</legend>
-                <div className="words-searched">
-                  <p>You can found here all the words that you have searched on our
+              <div className="words-searched">
+                <p>
+                  You can found here all the words that you have searched on our
                   wibsite.
-                  </p>
-                  <SearchList></SearchList>
-                </div>
+                </p>
+                <SearchList></SearchList>
+              </div>
             </fieldset>
           </div>
         </div>
