@@ -7,6 +7,9 @@ import "../styles/Meaning.css";
 import { notFound, redirect } from "next/navigation";
 import SearchList from "./Search_list";
 import SpeakButton from "./SpeakButton";
+import Head from "next/head";
+import AdSense from "./AdSense";
+
 
 
 const Meaning = async ({ language, word }) => {
@@ -535,6 +538,13 @@ const Meaning = async ({ language, word }) => {
       </div>
 
       <div className="right-part">
+        
+          {/* <script
+            async
+            custom-element="amp-ad"
+            src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
+          ></script> */}
+        
         <div className="right-part-up-down">
           <fieldset className="right-fieldset">
             <legend className="article-title">Article Section</legend>
@@ -708,9 +718,13 @@ const Meaning = async ({ language, word }) => {
             </fieldset>
           </div>
         </div>
+        <div className="ad-box">
+          <AdSense></AdSense>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Meaning;
+

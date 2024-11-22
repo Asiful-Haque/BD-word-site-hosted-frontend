@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SearchList from "./Search_list";
 import "../styles/Meaning.css";
+import AdSense from "./AdSense";
 
 const SpellChecker = async ({ word, data }) => {
   const suggestionsString = data.suggestions[1];
@@ -33,7 +34,9 @@ const SpellChecker = async ({ word, data }) => {
             )}
           </ul>
         </div>
+        <AdSense></AdSense>
       </div>
+
 
       <div className="right-part">
         <div className="right-part-up-down">
@@ -214,6 +217,7 @@ const SpellChecker = async ({ word, data }) => {
             </fieldset>
           </div>
         </div>
+        <AdSense></AdSense>
       </div>
     </div>
   );
