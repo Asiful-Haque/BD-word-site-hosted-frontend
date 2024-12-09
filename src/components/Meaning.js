@@ -15,7 +15,7 @@ import AdSense from "./AdSense";
 const Meaning = async ({ language, word }) => {
   // fetching data from api
   const result = await fetch(
-    `http://localhost:5000/english-to-${language}-meaning-${word}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/english-to-${language}-meaning-${word}`,
     {
       method: "GET",
       cache: "no-store",
@@ -24,11 +24,15 @@ const Meaning = async ({ language, word }) => {
       },
     }
   );
+  console.log(process.env.NEXT_PUBLIC_BASE_URL);
+  console.log(result);
   if (!result.ok) {
     // notFound();
-    return redirect(`http://localhost:3000/wrong?word=${word}`);
+    return redirect(`${process.env.NEXT_PUBLIC_BASE_URL_FRONT}/wrong?word=${word}`);
   }
   const meaningData = await result.json();
+  console.log(meaningData);
+  console.log(meaningData.result.mean);
 
   const { width, height } = meaningData.result;
   const imageBaseUrl = "https://content2.mcqstudy.com/ba2/";
@@ -52,6 +56,7 @@ const Meaning = async ({ language, word }) => {
   const antonyms = meaningData.result_secondary.data.anto;
   // const ss_res = meaningData.ss_result;
   const data = meaningData.ss_result;
+  
   return (
     <div className="hero-container">
       {/* Left Part */}
@@ -86,7 +91,7 @@ const Meaning = async ({ language, word }) => {
                   height={height}
                   width={width}
                   title={word}
-                  layout="responsive"
+                  style={{ width: "100%", height: "auto" }}
                   loading="lazy"
                 />
               </div>
@@ -310,7 +315,7 @@ const Meaning = async ({ language, word }) => {
                       width={600}
                       height={400}
                       fallback={fallbackUrl}
-                      layout="responsive"
+                      style={{ width: "100%", height: "auto" }}
                       className="image"
                     />
                   </div>
@@ -335,7 +340,7 @@ const Meaning = async ({ language, word }) => {
               alt="Learn Prepositions by Photos"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -349,7 +354,7 @@ const Meaning = async ({ language, word }) => {
               alt="commonly confused words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -363,7 +368,7 @@ const Meaning = async ({ language, word }) => {
               alt="form of verbs"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -377,7 +382,7 @@ const Meaning = async ({ language, word }) => {
               alt="Learn 300+ TOEFL words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -391,7 +396,7 @@ const Meaning = async ({ language, word }) => {
               alt="Fill in the blanks"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -405,7 +410,7 @@ const Meaning = async ({ language, word }) => {
               alt="Topic Wise Words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -419,7 +424,7 @@ const Meaning = async ({ language, word }) => {
               alt="Learn 3000+ common words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -433,7 +438,7 @@ const Meaning = async ({ language, word }) => {
               alt="Learn English Grammar"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -447,7 +452,7 @@ const Meaning = async ({ language, word }) => {
               alt="Words Everyday"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -461,7 +466,7 @@ const Meaning = async ({ language, word }) => {
               alt="Most Searched Words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -475,7 +480,7 @@ const Meaning = async ({ language, word }) => {
               alt="GRE Words"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -489,7 +494,7 @@ const Meaning = async ({ language, word }) => {
               alt="Android App"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -503,7 +508,7 @@ const Meaning = async ({ language, word }) => {
               alt="iPhone App"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -517,7 +522,7 @@ const Meaning = async ({ language, word }) => {
               alt="Chrome Extension"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -531,7 +536,7 @@ const Meaning = async ({ language, word }) => {
               alt="Common Translations"
               width={300}
               height={200}
-              layout="responsive"
+              style={{ width: "100%", height: "auto" }}
             />
           </a>
         </div>
@@ -553,10 +558,9 @@ const Meaning = async ({ language, word }) => {
                 <Image
                   src="https://server3.mcqstudy.com/blog_image/Capt.webp" // Use absolute path from the public directory
                   alt="Native speaker 'mistakes' – past participles, 'me', splitting infinitives"
-                  layout="responsive" // Makes the image responsive
-                  width={303} // Original width of the image
-                  height={227} // Original height of the image
-                  style={{ maxHeight: "180px" }} // Applying maxHeight directly
+                  width={303} 
+                  height={180} 
+                  style={{ maxHeight: "180px", width: "100%", height: "auto" }} // Applying maxHeight directly
                 />
               </div>
               <a

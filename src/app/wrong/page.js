@@ -6,7 +6,7 @@ export default async function error(props) {
   const word = await searchParams.word;
 
   const response = await fetch(
-    `http://localhost:5000/suggestions?word=${word}`
+    `${process.env.BASE_URL}/suggestions?word=${word}`
   );
   const data = await response.json();
 

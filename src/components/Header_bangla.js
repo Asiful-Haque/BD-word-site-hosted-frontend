@@ -16,7 +16,7 @@ const Header_bangla = () => {
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchWord(value); // Update input value
-        console.log("handleSearchChange function");
+        // console.log("handleSearchChange function");
     };
 
     // Handle search form submission
@@ -24,11 +24,11 @@ const Header_bangla = () => {
         e.preventDefault(); // Prevent default form submission
         // console.log("handle search function");
         if (searchWord.trim()) {
-            console.log(searchWord);
+            // console.log(searchWord);
             const formattedQuery = searchWord.trim().replace(/\s+/g, '-');
             // console.log("formattedQuery");
             // console.log(formattedQuery);
-            const targetUrl = `/english-to-bengali-meaning-${formattedQuery}`; // Construct the URL
+            const targetUrl = `${process.env.NEXT_PUBLIC_BASE_URL_FRONT}/english-to-bengali-meaning-${formattedQuery}`; // Construct the URL
             // console.log(targetUrl);
             const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
             searchHistory.unshift(formattedQuery);

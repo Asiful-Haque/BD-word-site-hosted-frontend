@@ -9,8 +9,8 @@ const meaning = async({ params }) => {
     const wordParts = meaning.split('-').slice(4); // Starts from index 4 (after 'meaning')
     const word = wordParts.join(' '); // Join parts with spaces
     const language = meaning.split('-')[2];
-    console.log(language);
-    console.log(word);
+    // console.log(language);
+    // console.log(word);
 
     if (!language || !word) {
       // notFound();

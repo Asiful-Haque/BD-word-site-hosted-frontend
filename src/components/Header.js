@@ -1,5 +1,6 @@
 // Import necessary modules
 "use client";
+import Link from 'next/link';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaBars } from 'react-icons/fa'; // Ensure correct import
@@ -60,15 +61,15 @@ const Header = () => {
             {/* Navigation Menu */}
             {menuOpen && (
                 <ul className="menu">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/read-text">Read Text</a></li>
-                    <li><a href="/vocabulary-game">Vocabulary Games</a></li>
-                    <li><a href="/words-everyday">Words Everyday</a></li>
-                    <li><a href="/dictionary">Khmer to English Dictionary</a></li>
-                    <li><a href="/favorite-words">Favorite Words</a></li>
-                    <li><a href="/search-history">Word Search History</a></li>
-                    <li><a href="/blogs">Blogs</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/read-text">Read Text</Link></li>
+                    <li><Link href="/vocabulary-game">Vocabulary Games</Link></li>
+                    <li><Link href="/words-everyday">Words Everyday</Link></li>
+                    <li><Link href="/dictionary">Khmer to English Dictionary</Link></li>
+                    <li><Link href="/favorite-words">Favorite Words</Link></li>
+                    <li><Link href="/search-history">Word Search History</Link></li>
+                    <li><Link href="/blogs">Blogs</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
                 </ul>
             )}
         </div>
